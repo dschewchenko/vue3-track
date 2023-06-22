@@ -1,52 +1,92 @@
 <template>
   <div class="docs">
-    <h1>Vue Track Scroll Directive Documentation</h1>
+    <h1>Vue3 Track</h1>
 
-    <h2>Installation</h2>
     <p>
-      First, make sure you have Vue.js installed in your project. Then, you can install the Vue Track Scroll directive
-      using npm or yarn:
+      Vue3 Track is a Vue.js directive that allows you to track the scroll position of an element relative to the
+      viewport or a scroll container. It provides a simple and flexible way to create scroll-based effects and
+      animations. It provides the following features:
     </p>
 
-    <div class="code">
-      <pre><code>npm install vue3-track</code></pre>
-      <pre><code>yarn add vue3-track</code></pre>
-    </div>
+    <ul>
+      <li>Tracks the vertical and horizontal position</li>
+      <li>Tracks the vertical and horizontal visibility (with an optional offset)</li>
+      <li>Supports custom scroll containers.</li>
+      <li>Supports callback functions.</li>
+      <li>Provides CSS variables for styling.</li>
+    </ul>
+    <h2>Installation</h2>
+
+    <p>You can install Vue3 Track using npm or yarn:</p>
+
+    <pre><code>npm install vue3-track</code></pre>
+
+    <pre><code>yarn add vue3-track</code></pre>
 
     <h2>Usage</h2>
-    <p>
-      To use the Vue Track Scroll directive in your Vue components, you need to import it and register it as a directive
-      globally or locally:
-    </p>
 
-    <p>
-      <strong>Global registration</strong> (recommended): Import the directive and register it globally in your main
-      entry file:
-    </p>
-    <div class="code">
-      <pre><code>import { createApp } from 'vue';
+    <h3>Global Registration</h3>
+
+    <p>To use Vue3 Track globally in your project, you need to register it as a directive in your main entry file:</p>
+
+    <pre><code>
+import { createApp } from 'vue';
 import { VueTrackDirective, VueTrackPlugin } from 'vue3-track';
 
 const app = createApp(App);
 
-app.use(VueTrackPlugin, { /* options object */ });
+app.use(VueTrackPlugin);
 
-app.mount('#app');</code></pre>
-    </div>
+app.mount('#app');
+  </code></pre>
 
-    <p><strong>Local registration</strong>: Import the directive and register it locally in your component:</p>
-    <div class="code">
-      <pre><code>import { VueTrackDirective } from 'vue3-track';
+    <h3>Local Registration</h3>
+
+    <p>
+      To use Vue3 Track locally in a specific component, you can import the directive and register it within the
+      component:
+    </p>
+
+    <pre><code>
+import { VueTrackDirective } from 'vue3-track';
 
 export default {
   directives: {
     trackScroll: VueTrackDirective
-  }
-};</code></pre>
-    </div>
+  },
+  // ...
+};
+  </code></pre>
+
+    <h2>CSS Variables</h2>
+
+    <p>The following CSS variables are available for styling:</p>
+
+    <ul>
+      <li>
+        <code>--vue-track-y</code>: The vertical position of the element relative to the scroll container or window.
+      </li>
+      <li>
+        <code>--vue-track-x</code>: The horizontal position of the element relative to the scroll container or window.
+      </li>
+      <li>
+        <code>--vue-track-visible-y</code>: The visibility of the element in the vertical direction. It is 1 when the
+        element is visible and 0 when it is not.
+      </li>
+      <li>
+        <code>--vue-track-visible-x</code>: The visibility of the element in the horizontal direction. It is 1 when the
+        element is visible and 0 when it is not.
+      </li>
+    </ul>
+
+    <p>
+      You can use these CSS variables to apply different styles based on the scroll position and visibility of the
+      tracked elements.
+    </p>
 
     <h2>Directive Options</h2>
-    <p>The `v-track-scroll` directive supports the following options:</p>
+
+    <p>The <code>vue3-track</code> directive supports the following options:</p>
 
     <ul>
       <li>
@@ -64,8 +104,13 @@ export default {
     </ul>
 
     <p>
-      <b>Note:</b> The position is calculated from the top-left corner of the element on which the directive is applied.
+      <strong>Note:</strong> The position is calculated from the top-left corner of the element on which the directive
+      is applied.
     </p>
+
+    <h2>Supported Browsers</h2>
+
+    <p>Vue3 Track supports all modern browsers (>95% market share) without IE11 support.</p>
 
     <h2>Examples:</h2>
   </div>
@@ -136,8 +181,6 @@ const positionRef = shallowRef({ left: 0, top: 0 } as VueTrackPosition);
 const visibilityRef = shallowRef({ vertical: false, horizontal: false } as VueTrackVisibility);
 
 function onTrackUpdate(position: VueTrackPosition, visibility: VueTrackVisibility) {
-  console.log("position", position);
-  console.log("visibility", visibility);
   positionRef.value = position;
   visibilityRef.value = visibility;
 }
@@ -168,8 +211,17 @@ h2 {
   margin-top: 30px;
 }
 
+h3 {
+  margin-top: 20px;
+}
+
 p {
   margin-bottom: 10px;
+}
+
+ul {
+  margin: 10px 0 20px;
+  padding-left: 1rem;
 }
 
 .docs {
