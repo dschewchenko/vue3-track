@@ -3,9 +3,7 @@
  */
 declare global {
   interface HTMLElement {
-    _scrollContainer: HTMLElement | Window;
-    _visibilityCallback: VueTrackConfig["callback"] | null;
-    _scrollHandler: () => void;
+    _vueTrackRemoveListener: () => void;
   }
 }
 

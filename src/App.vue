@@ -25,7 +25,60 @@
 
     <h2>Usage</h2>
 
-    <h3>Global Registration</h3>
+    <h3>Composable Function</h3>
+
+    <p>
+      To use Vue3 Track as a composable function, you need to import it and call it in the setup function of your
+      component:
+    </p>
+
+    <pre><code>
+import { useVueTrack } from 'vue3-track';
+
+export default {
+  setup() {
+    const element = ref(null); // reference to element that should be tracked
+    const { position, visibility } = useVueTrack(element, { // same options as in directive
+      selector: '.scroll-container',
+      offset: 100,
+      callback: (position, visibility) => {
+        // ...
+      }
+    });
+
+    return {
+      position,
+      visibility
+    };
+  }
+};
+    </code></pre>
+
+    <p>The <code>useVueTrack</code> function returns the following reactive properties:</p>
+
+    <ul>
+      <li>
+        <code>position</code>: The vertical and horizontal position of the element relative to the scroll container or
+        window.
+      </li>
+      <li>
+        <code>visibility</code>: The vertical and horizontal visibility of the element relative to the scroll container
+        or window.
+      </li>
+      <li>
+        <code>addListener</code>: A function that adds a listener to the scroll container. For manual setup. Use only
+        with 3rd argument `false`. By default, it is `true` and the listener is added automatically in the `onMounted`
+        hook.
+      </li>
+      <li>
+        <code>removeListener</code>: A function that removes the listener from the scroll container. For manual setup.
+        Use only with 3rd argument `false`. By default, it is `true` and the listener is removed automatically in the
+        `onUnmounted` hook.
+      </li>
+    </ul>
+
+    <h3>Directive</h3>
+    <h4>Global Registration</h4>
 
     <p>To use Vue3 Track globally in your project, you need to register it as a directive in your main entry file:</p>
 
@@ -40,7 +93,7 @@ app.use(VueTrackPlugin);
 app.mount('#app');
   </code></pre>
 
-    <h3>Local Registration</h3>
+    <h4>Local Registration</h4>
 
     <p>
       To use Vue3 Track locally in a specific component, you can import the directive and register it within the
@@ -84,9 +137,9 @@ export default {
       tracked elements.
     </p>
 
-    <h2>Directive Options</h2>
+    <h2>Options</h2>
 
-    <p>The <code>vue3-track</code> directive supports the following options:</p>
+    <p>The <code>vue3-track</code> supports the following options:</p>
 
     <ul>
       <li>
@@ -104,8 +157,8 @@ export default {
     </ul>
 
     <p>
-      <strong>Note:</strong> The position is calculated from the top-left corner of the element on which the directive
-      is applied.
+      <strong>Note:</strong> The position is calculated from the top-left corner of the element on which the function or
+      directive is applied.
     </p>
 
     <h2>Supported Browsers</h2>
@@ -115,8 +168,10 @@ export default {
     <h2>Examples:</h2>
   </div>
   <div class="container">
-    <div v-track-scroll class="parallax-container">
+    <div ref="elementRef" v-track-scroll class="parallax-container">
       <p>Container with simple parallax effect. Scroll down to see the effect.</p>
+      <p>Position: {{ position }}</p>
+      <p>Visibility: {{ visibility }}</p>
 
       <div class="parallax-item layer1"></div>
       <div class="parallax-item layer2"></div>
@@ -174,12 +229,18 @@ export default {
 </template>
 
 <script setup lang="ts">
-import { shallowRef } from "vue";
+import { ref, shallowRef } from "vue";
+import { useVueTrack } from "./composable";
 import type { VueTrackPosition, VueTrackVisibility } from "./types";
 
+const elementRef = ref<HTMLElement | null>(null);
 const positionRef = shallowRef({ left: 0, top: 0 } as VueTrackPosition);
 const visibilityRef = shallowRef({ vertical: false, horizontal: false } as VueTrackVisibility);
 
+// use the composable
+const { position, visibility } = useVueTrack(elementRef, {});
+
+// track update callback function for the directive
 function onTrackUpdate(position: VueTrackPosition, visibility: VueTrackVisibility) {
   positionRef.value = position;
   visibilityRef.value = visibility;

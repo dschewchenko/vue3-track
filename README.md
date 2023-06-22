@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/vue3-track.svg)](https://www.npmjs.com/package/vue3-track)
 [![npm downloads](https://img.shields.io/npm/dw/vue3-track)](https://www.npmjs.com/package/vue3-track)
 
-Vue3 Track is a Vue.js directive
+Vue3 Track is a Vue.js directive and composable function
 that allows you to track the scroll position of an element relative to the viewport or a scroll container.
 It provides a simple and flexible way to create scroll-based effects and animations. 
 It provides the following features:
@@ -30,7 +30,43 @@ yarn add vue3-track
 
 ## Usage
 
-### Global Registration
+### Composable Function
+
+To use Vue3 Track as a composable function, you need to import it and call it in the setup function of your component:
+
+```javascript
+import { useVueTrack } from 'vue3-track';
+
+export default {
+  setup() {
+    const element = ref(null); // reference to element that should be tracked
+    const { position, visibility } = useVueTrack(element, { // same options as in directive
+      selector: '.scroll-container',
+      offset: 100,
+      callback: (position, visibility) => {
+        // ...
+      }
+    });
+
+    return {
+      position,
+      visibility
+    };
+  }
+};
+```
+
+The `useVueTrack` function returns the following reactive properties:
+
+- `position`: The vertical and horizontal position of the element relative to the scroll container or window.
+- `visibility`: The vertical and horizontal visibility of the element. It is `true` when the element is visible and `false` when it is not.
+- `addListener`: A function that adds a listener to the scroll container. For manual setup. Use only with 3rd argument `false`. By default, it is `true` and the listener is added automatically in the `onMounted` hook.
+- `removeListener`: A function that removes a listener from the scroll container. For manual setup. Use only with 3rd argument `false`. By default, it is `true` and the listener is removed automatically in the `onUnmounted` hook.
+
+
+### Directive
+
+#### Global Registration
 
 To use Vue3 Track globally in your project, you need to register it as a directive in your main entry file:
 
@@ -45,7 +81,7 @@ app.use(VueTrackPlugin);
 app.mount('#app');
 ```
 
-### Local Registration
+#### Local Registration
 
 To use Vue3 Track locally in a specific component, you can import the directive and register it within the component:
 
@@ -70,14 +106,14 @@ The following CSS variables are available for styling:
 
 You can use these CSS variables to apply different styles based on the scroll position and visibility of the tracked elements.
 
-## Directive Options
+## Options
 The `vue3-track` directive supports the following options:
 
 - `selector` (optional): CSS selector for the scroll container. By default, it uses the window as the scroll container.
 - `callback` (optional): Callback function that is called when the element is scrolled. It receives the position and visibility of the element.
-- `offset` (optional): Offset for the vertical and horizontal visibility check. It adds a margin to the top and bottom (vertical) or left and right (horizontal) edges of the element before considering it visible.
+- `offset` (optional): Offset for the vertical and horizontal visibility check. It adds a margin to the top and bottom (vertical) or left and right (horizontal) edges of the element before considering it visible. Only numbers are supported. By default, it is 0.
 
-**Note:** The position is calculated from the top-left corner of the element on which the directive is applied.
+**Note:** The position is calculated from the top-left corner of the element on which the function or directive is applied.
 
 ## Supported Browsers
 
