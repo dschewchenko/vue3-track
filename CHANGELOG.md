@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/dschewchenko/vue3-track/compare/v1.0.1...v1.0.2) (2023-06-22)
+
+
+### Bug Fixes
+
+* docs update ([edb76c9](https://github.com/dschewchenko/vue3-track/commit/edb76c9291786275cfceaba416f0c853c55ff127))
+
 ## [1.0.1](https://github.com/dschewchenko/vue3-track/compare/v1.0.0...v1.0.1) (2023-06-22)
 
 
