@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/dschewchenko/vue3-track/compare/v1.0.2...v1.1.0) (2023-06-22)
+
+
+### Features
+
+* add composable function ([6d11b8c](https://github.com/dschewchenko/vue3-track/commit/6d11b8cccd0ae80fbca9cffda5720716757cd50e))
+
 ## [1.0.2](https://github.com/dschewchenko/vue3-track/compare/v1.0.1...v1.0.2) (2023-06-22)
 
 
