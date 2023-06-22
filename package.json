@@ -1,0 +1,86 @@
+{
+  "name": "vue3-track",
+  "version": "1.0.0",
+  "description": "A Vue 3 directive to track an element's position relative to the viewport on scroll and visibility.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "rm -rf ./dist && ./node_modules/.bin/vite build",
+    "build:lib": "rm -rf ./dist && npm run build",
+    "build:docs": "rm -rf ./docs && npm run build -- --config vite.config.docs.ts",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run",
+    "coverage": "vitest run --coverage",
+    "docs": "typedoc --out docs",
+    "lint": "eslint --ext .ts,.js,.json ./src",
+    "lint:fix": "eslint --fix --ext .ts,.js,.json ./src",
+    "semantic-release": "semantic-release",
+    "prepare": "is-ci || husky install"
+  },
+  "main": "dist/vue3-track.umd.cjs",
+  "module": "dist/vue3-track.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/*",
+    "package.json",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dschewchenko/vue3-track.git"
+  },
+  "keywords": [
+    "vue",
+    "vue3",
+    "scroll",
+    "directive",
+    "viewport",
+    "position",
+    "track",
+    "visible"
+  ],
+  "author": "dschewchenko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dschewchenko/vue3-track/issues"
+  },
+  "homepage": "https://github.com/dschewchenko/vue3-track#readme",
+  "dependencies": {
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.6.3",
+    "@commitlint/config-conventional": "^17.6.3",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@types/jest": "^29.5.1",
+    "@types/node": "^18.15.3",
+    "@typescript-eslint/eslint-plugin": "^5.60.0",
+    "@typescript-eslint/parser": "^5.60.0",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "@vitest/coverage-c8": "^0.31.0",
+    "@vitest/ui": "^0.31.0",
+    "@vue/eslint-config-prettier": "^7.1.0",
+    "@vue/eslint-config-typescript": "^11.0.3",
+    "@vue/test-utils": "^2.4.0",
+    "eslint": "^8.43.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.3",
+    "is-ci": "^3.0.1",
+    "jsdom": "^22.1.0",
+    "prettier": "^2.8.8",
+    "rollup-plugin-visualizer": "^5.9.0",
+    "semantic-release": "^21.0.2",
+    "ts-jest": "^29.1.0",
+    "typescript": "~5.0.4",
+    "vite": "^4.3.9",
+    "vite-plugin-dts": "^2.3.0",
+    "vitest": "^0.32.2",
+    "vue-tsc": "^1.8.0"
+  }
+}
