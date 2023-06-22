@@ -22,7 +22,7 @@ export const VueTrackDirective = {
   mounted(el: HTMLElement, binding: DirectiveBinding<VueTrackDirectiveBindingValue>) {
     const config = parseBinding(binding.value);
 
-    const { addListener, removeListener } = useVueTrack(el, config);
+    const { addListener, removeListener } = useVueTrack(el, config, false);
 
     el[REMOVE_LISTENER] = removeListener;
     addListener();

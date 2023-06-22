@@ -3,9 +3,9 @@
     <h1>Vue3 Track</h1>
 
     <p>
-      Vue3 Track is a Vue.js directive that allows you to track the scroll position of an element relative to the
-      viewport or a scroll container. It provides a simple and flexible way to create scroll-based effects and
-      animations. It provides the following features:
+      Vue3 Track is a Vue.js directive and composable function that allows you to track the scroll position of an
+      element relative to the viewport or a scroll container. It provides a simple and flexible way to create
+      scroll-based effects and animations. It provides the following features:
     </p>
 
     <ul>
