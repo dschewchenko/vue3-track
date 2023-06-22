@@ -6,7 +6,7 @@ import vuePlugin from "@vitejs/plugin-vue";
 import { visualizer } from "rollup-plugin-visualizer";
 
 export default defineConfig({
-  base: "/",
+  base: "./",
   build: {
     outDir: "docs"
   },
