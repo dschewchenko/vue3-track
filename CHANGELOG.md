@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/dschewchenko/vue3-track/compare/v1.1.0...v1.1.1) (2023-06-22)
+
+
+### Bug Fixes
+
+* doc and directive ([72966e3](https://github.com/dschewchenko/vue3-track/commit/72966e3f7ffced82c4d804cf66d614db32490d0e))
+
 # [1.1.0](https://github.com/dschewchenko/vue3-track/compare/v1.0.2...v1.1.0) (2023-06-22)
 
 
