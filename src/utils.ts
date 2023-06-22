@@ -1,18 +1,15 @@
 import type { VueTrackConfig, VueTrackDirectiveBindingValue } from "./types.ts";
 
 /**
- * constans for the directive
+ * constants for the directive
  */
 export const SCROLL_EVENT = "scroll";
-export const SCROLL_CONTAINER = "_scrollContainer";
-export const VISIBILITY_CALLBACK = "_visibilityCallback";
-export const SCROLL_HANDLER = "_scrollHandler";
-export const OFFSET = "offset";
+export const REMOVE_LISTENER = "_vueTrackRemoveListener";
 
 /**
  * Parse the binding value to a VueTrackConfig object.
  *
- * @param value
+ * @param {VueTrackDirectiveBindingValue} value
  * @returns VueTrackConfig
  */
 export const parseBinding = (value: VueTrackDirectiveBindingValue): VueTrackConfig => {
@@ -31,10 +28,25 @@ export const parseBinding = (value: VueTrackDirectiveBindingValue): VueTrackConf
 /**
  * Set a css property on an element.
  *
- * @param el
- * @param property
- * @param value
+ * @param {HTMLElement} el
+ * @param {string} property
+ * @param {string} value
  */
 export const setCssProperty = (el: HTMLElement, property: string, value: string) => {
   el.style.setProperty(property, value);
+};
+
+/**
+ * Get the scroll container element.
+ *
+ * @param {string} selector
+ * @returns HTMLElement | Window
+ */
+export const getScrollContainer = (selector?: string) => {
+  const container = selector ? document.querySelector(selector) : window;
+  if (!container) {
+    console.warn(`No element found for selector "${selector}"`);
+  }
+
+  return container ?? window;
 };

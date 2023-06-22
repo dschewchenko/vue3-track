@@ -12,7 +12,15 @@ export default defineConfig({
       entry: resolve(__dirname, "src/index.ts"),
       name: "vue3-track",
       fileName: "vue3-track"
+    },
+    rollupOptions: {
+      // make sure to externalize deps that shouldn't be bundled
+      // into your library
+      external: ["vue"]
     }
+  },
+  optimizeDeps: {
+    exclude: ["vue"]
   },
   plugins: [
     vuePlugin(),
